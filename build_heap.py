@@ -5,12 +5,14 @@ def siftDown(i, data, swaps):
 
     if right < len(data):
         smallest = left if (data[left] < data[right]) else right
+    elif left < len(data):
+        smallest = left
 
-        if data[smallest] < data[i]:
-            data[i], data[smallest] = data[smallest], data[i]
-            swaps.append([i, smallest])
+    if 'smallest' in locals() and data[smallest] < data[i]:
+        data[i], data[smallest] = data[smallest], data[i]
+        swaps.append([i, smallest])
 
-            siftDown(smallest, data, swaps)
+        siftDown(smallest, data, swaps)
 
 def build_heap(data):
     swaps = []
